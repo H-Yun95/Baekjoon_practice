@@ -4,12 +4,26 @@
 않는다.
 '''
 
+
+def Max_key(dicts):
+    return max(dicts, key=dicts.get)
+
+
+def answer(dicts):
+    for x in range(len(dicts)-1):
+        for y in range(len(dicts)-x-1):
+            if dicts[x] == dicts[y+1]:
+                return '?'
+    return Max_key(dicts)
+
+
 word = input()
+Cword = word.upper()
+word_dict = {key: 0 for key in dict.fromkeys(Cword).keys()}
+for num in Cword:
+    for x in word_dict:
+        if num == x:
+            word_dict[x] += 1
+print(Cword)
 
-word_dict = {key : 0 for key in dict.fromkeys(word).keys()}
-
-for num in word:
-    for x in 
-    if num == 
-
-print(word_dict)
+print(answer(word_dict))

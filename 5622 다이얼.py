@@ -11,3 +11,40 @@ UNUCIC는 868242와 같다.
 할머니가 외운 단어가 주어졌을 때, 이 전화를 걸기 위해서 필요한 최소 시간을 
 구하는 프로그램을 작성하시오.
 '''
+from string import ascii_lowercase  # 편하게 알파벳 문자열 받을 수 있는 모듈이라고 해서 사용해봄
+
+# 번호가 할당된 알파벳 딕 생성
+# 딕셔너리 값으로 덧셈 할당
+
+Dial = {}  # 알파벳마다 밸류 할당하는 공딕 생성
+
+for Alpha in ascii_lowercase:
+    Dial[Alpha] = 0  # 딕셔너리 만들고,
+
+for x in Dial:  # 이렇게 번거롭게밖에 안 만들어진다....
+    if x == 'a' or x == 'b' or x == 'c':
+        Dial[x] = 2
+    elif x == 'd' or x == 'e' or x == 'f':
+        Dial[x] = 3
+    elif x == 'g' or x == 'h' or x == 'i':
+        Dial[x] = 4
+    elif x == 'j' or x == 'k' or x == 'l':
+        Dial[x] = 5
+    elif x == 'm' or x == 'n' or x == 'o':
+        Dial[x] = 6
+    elif x == 'p' or x == 'q' or x == 'r' or x == 's':
+        Dial[x] = 7
+    elif x == 't' or x == 'u' or x == 'v':
+        Dial[x] = 8
+    elif x == 'w' or x == 'x' or x == 'y' or x == 'z':
+        Dial[x] = 9
+word = input().lower()
+mul = 0
+
+for y in word:
+    mul += Dial[y]  # 사실 해법 자체는 간단한 편
+
+print(mul+len(word))
+
+
+# print(sum(62-int(10000/(ord(v)+102))for v in input()))

@@ -14,10 +14,43 @@
 # 20 ~ 37 = 4 18개  36, 37
 # 38 ~ 61 = 5 24개 60, 61
 
-# a = int(input())
-num_list = [x for x in range(1, 101)]
-answer_list = [[1]]
 
-for x in range(len(num_list)):
-    if x > 0:
-        pass
+def make_answer(lst):  # [[index 6],[index 12], [index 18]...] 꼴의 2차원 리스트 제작을 위한 함수
+    result = []  # 우선 결과값을 담을 값 리스트 선언
+    sub_list = []  # 결과값 안에 들어갈 서브 리스트 선언
+    count = 1   # 연산이 복잡하게 되긴 하나... 우선 아래 인덱스 계산을 위해 카운트1 선언
+    count2 = 2  # 1 -> 3 -> 6 -> 10 ... 꼴의 수열을 필요로 한다. 공차가 1씩 증가하므로 그 부분 해결을 위한 카운트 2 선언
+    for x, elem in enumerate(lst):  # enumerate (인덱스, 값을 튜플 형식으로 동시에 반환)을 써서 간결하게 정리
+        sub_list.append(elem)  # 우선 원소를 서브 리스트에 입력
+        if (x+1) % (count*6) == 0:  # 여기서 인덱스 + 1을 카운트 * 6으로 나누었을 때 나누어떨어진다면?
+            result.append(sub_list)  # 값 리스트에 서브 리스트 입력
+            sub_list = []  # 서브리스트를 초기화 시켜주고,
+            count += count2  # 카운트에 공차만큼 수를 더함
+            count2 += 1  # 그리고 공차를 1씩 증가시켜줌
+    if sub_list:  # 이건 쳇에게 물어봐서 나온 항목인데... 아마 남은 꼬다리를 입력시키는 용도인듯?
+        result.append(sub_list)  # 확인해 보니 맞다. 없으니 꼬다리는 짤려서 나옴
+    return result
+
+
+# 여기서 문제. 2~100까지의 리스트는 문제 없으나 10억이 넘어가니 시간 초과걸림
+num_list = [x for x in range(2, 101)]
+answer_lst = [[1]] + make_answer(num_list)  # 우선 문제의 리스트 구현을 위해 [[1]]을 더해줌
+
+a = int(input())
+
+for x, elem in enumerate(answer_lst):  # 역시나 enumerate를 써주고
+    if a in elem:  # 만약 해당하는 인덱스의 리스트에 입력받은 정수가 있다면
+        print(x+1)  # 그 인덱스 +1을 반환
+
+# 놀랍게도 이것은 10억의 숫자를 리스트화 하려다가 메모리 에러가 났다고 한다. ㅆ
+# 작동은 한다만... 용량 문제로 다른 방법이 필요하다.
+
+# ========================================================================
+a = int(input())  # 이것은 구글링의 산물
+
+num_count = 1  # 우선 숫자 판별을 위한 정수 1 선언
+ans = 1  # 출력될 값 선언
+while a > num_count:  # 입력한 정수가 카운트보다 크다면,
+    num_count += 6 * ans  # 카운트에 6*답 값을 더해주고
+    ans += 1  # 답 값에 +1 해줌
+print(ans)  # 이렇게 되면 1 -> (1+6*1) -> (7+6*2) -> (19+6*3) ... 이 된다.

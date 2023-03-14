@@ -9,3 +9,13 @@
 공을 어떻게 바꿀지가 주어졌을 때, M번 공을 바꾼 이후에 각 바구니에 어떤 
 공이 들어있는지 구하는 프로그램을 작성하시오.
 '''
+
+a, b = map(int, input().split())
+
+numlist = [x+1 for x in range(a)]  # [1, 2, 3, ...] 으로 구성되게 리스트 작성
+
+for x in range(b):
+    c, d = map(int, input().split())
+    numlist[c-1], numlist[d-1] = numlist[d-1], numlist[c-1]
+    # 입력된 원소 두 자리를 바꿔줌
+print(*numlist)

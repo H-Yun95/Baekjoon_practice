@@ -21,4 +21,17 @@ a, b = map(int, input().split())
 
 numlist = [x + 1 for x in range(a)]
 
-print(numlist)
+
+for x in range(b):
+    c, d, e = map(int, input().split())
+    newlist = numlist[c-1:d]
+    print(newlist)
+    print(numlist)
+'''
+c = [1, 2, 3]
+
+for x in range(len(c)):
+    c.reverse()
+    numlist.insert(3, c[x])
+print(numlist)   리스트를 만들고 원소로 삽입하는 법.
+'''

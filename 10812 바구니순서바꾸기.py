@@ -17,21 +17,42 @@ begin+1, ..., mid-1로 바꾸게 된다.
 프로그램을 작성하시오.
 '''
 
-a, b = map(int, input().split())
+a, b = map(int, input().split())  # 리스트, 횟수 입력
 
-numlist = [x + 1 for x in range(a)]
+numlist = [x + 1 for x in range(a)]  # 문제 풀이를 위한 [1,2,3...x] 꼴의 리스트 생성
 
+for x in range(b):  # b만큼 반복
+    c, d, e = map(int, input().split())  # 시작지점, 끝지점, 리스트를 뒤집을 구간 입력
+    newlist = numlist[c-1:d]  # 여기서 지점을 포함한 새 리스트 생성
+    for y in newlist:
+        if y in numlist:
+            numlist.remove(y)  # 없애는건 성공. 뉴리스트의 요소를 원래의 리스트에서 제거
+    for z in range(d-e+1):  # 움직일 구간만큼 반복
+        num = newlist[-1]  # 뉴리스트의 제일 끝 지점을 변수로 선언하고,
+        newlist.remove(num)  # 그 부분을 제거하고 제일 앞에 넘버를 삽입하는걸 반복
+        newlist.insert(0, num)  # 근데 이상하게 이 두 부분을 거꾸로 했을땐 작동하지 않음...
 
-for x in range(b):
-    c, d, e = map(int, input().split())
-    newlist = numlist[c-1:d]
-    print(newlist)
-    print(numlist)
+    newlist.reverse()  # 여기서부턴 다시 뉴리스트를 원리스트에 입력하는 프로세스. 먼저 뉴리스트를 뒤집어준다.
+    for w in range(len(newlist)):  # 뉴리스트만큼 반복, 근데 여기서 인덱스를 거꾸로 가게 했으면 굳이 뒤집지 않아도 괜찮은듯?
+        numlist.insert(c-1, newlist[w])  # 하나씩 원래 들어가야 할 c-1 위치에 삽입
+print(*numlist)
+
 '''
+n,m=map(int,input().split())  숏코딩
+l=[i for i in range(1,n+1)]  이렇게 생성하는것까진 동일
+for _ in range(m):
+    i,k,j=map(int,input().split()) 인수도 동일하게 받긴 하는데...
+    l[i-1:k]=l[j-1:k]+l[i-1:j-1]  여기서 갱장히 인덱스를 잘 활용한다.
+    구간을 l[i-1:k]로 자르고, 그 구간의 순서를 바꾸는 ㅇㅎ 이해했음
+print(*l)
+'''
+
+'''
+
 c = [1, 2, 3]
+c.reverse()
 
 for x in range(len(c)):
-    c.reverse()
     numlist.insert(3, c[x])
 print(numlist)   리스트를 만들고 원소로 삽입하는 법.
 '''

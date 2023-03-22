@@ -24,11 +24,46 @@ P/F 과목의 경우 등급이 P또는 F로 표시되는데, 등급이 P인 과�
 '''
 
 total = 0
+sub = 0
 
-while True:
-    try:
-        a, b, c = input().split()
-        b = int(b)
-        pass
-    except:
-        break
+for x in range(20):
+    a, b, c = input().split()
+    b = int(float(b))
+    sub += b
+    if c == 'A+':
+        total += (4.5 * b)
+    elif c == 'A0':
+        total += (4.0 * b)
+    elif c == 'B+':
+        total += (3.5 * b)
+    elif c == 'B0':
+        total += (3.0 * b)
+    elif c == 'C+':
+        total += (2.5 * b)
+    elif c == 'C0':
+        total += (2.0 * b)
+    elif c == 'D+':
+        total += (1.5 * b)
+    elif c == 'D0':
+        total += (1.0 * b)
+    elif c == 'F':
+        total += (0 * b)
+    elif c == 'P':
+        sub -= b
+        continue  # 너무 길다... 맞긴 하지만 분명 방법이 있을 것
+
+print(f'{total/sub:.6f}')
+
+'''
+import sys
+v1 = v2 = 0
+for i in sys.stdin:
+    a,b,c = i.split()
+    if c == 'P':
+      continue
+    b = float(b)
+    v2 += b
+    v1 += b*(4.5-0.25*'A+A0B+B0C+C0D+D012F'.\
+index(c))
+print(v1/v2)  모듈로 해결한 방법이 있지만 만만찮게 김 ㅋㅋㅋㅋ
+'''

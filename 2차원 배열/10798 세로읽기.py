@@ -36,7 +36,21 @@ Aa0aPAf985Bz1EhCz2W3D1gkD6x
 출력하는 프로그램을 작성하시오.
 '''
 
-Wlist = [input() for _ in range(5)]
+Wlist = [input() for _ in range(5)]  # 문자열을 리스트로 만들어준다.
+
+e = []  # 리스트 원소의 알파벳을 하나씩 넣을 공리스트 선언
+
+# [Wlist 원소의 길이로 만든 새 원소] 중 가장 큰 값 만큼 반복.
+for x in range(max([len(x) for x in Wlist])):
+    for y in range(5):                        # 문자열은 최대 5개 입력해서 5번 반복
+        try:                                  # 예외처리는 신이다 ㄹㅇ.... 진짜 개꿀
+            e.append(Wlist[y][x])             # 공부하는 보람 느끼게함 ㄹㅇ
+        except:
+            continue                           # 이걸로 짧은 단어도 인덱스 오류 안나고 걍 넘김
+
+for x in e:
+    print(x, end='')  # 대략적 답 개요  출력하는 법
+
 # answer = []
 
 # a = 'AdSDFG'
@@ -47,14 +61,8 @@ Wlist = [input() for _ in range(5)]
 
 # print(e)
 
-e = []
-
-for x in range(max([len(x) for x in Wlist])):
-    for y in range(5):
-        try:
-            e.append(Wlist[y][x])
-        except:
-            continue
-
-for x in e:
-    print(x, end='')  # 대략적 답 개요
+'''
+for a in zip(*[input().ljust(15)for _ in range(5)]):  zip함수로 푼듯.
+ for b in a:
+  if b !=' ':print(b,end='')
+'''

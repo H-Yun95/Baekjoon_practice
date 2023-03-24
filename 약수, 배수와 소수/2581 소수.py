@@ -59,3 +59,29 @@ if answer:
     print(f'{sum(answer)}\n{min(answer)}')
 else:
     print(-1)
+
+'''
+# input
+M = int(input())
+N = int(input())
+
+# process
+decimal = []
+for i in range(M, N+1):
+	for j in range(2, i+1):
+		if j == i:
+			decimal.append(i)
+		if i % j == 0:
+			break
+
+# output
+if not decimal:
+	print(-1)
+else:
+	print(sum(decimal))
+	print(decimal[0])
+
+남이 쓴거 보니 이런 우둔한 등신이 다 있나 싶다.
+애초에 range를 (m, n) 이렇게 받으면 쉬울걸 바득바득 따로 리스트를 만들어버리니...
+인덱스 활용을 항상 염두에 두자. 중등부 문제 맞는듯 ㅋㅋㅋㅋㅋㅋㅋ
+'''

@@ -23,15 +23,17 @@ def Pnum(a):
     for x in range(2, a):
         if a % x == 0:
             return 0
-    return a
+    return a    # 소수 판별
 
 
 a = int(input())
-alist = [Pnum(x + 1) for x in range(a)]
-Alist = []
-for x in alist:
-    if x != 0:
+alist = [Pnum(x + 1) for x in range(a)]  # 원소 하나하나에 피넘을 씌운 리스트 생성.
+Alist = []               # 원래는 밑작업이 필요없길 바랐으나, 함수는 무조건 리턴하여
+for x in alist:          # 소수가 아닐 시 0을 리턴하고,
+    if x != 0:           # 0이 아닌 뭔소들만 다른 리스트에 담아두는 번거로운 작업 실행.
         Alist.append(x)
+    # 리스트를 [소수, 소수, 소수 ... 소수] 꼴로 만들기 위한 작업.
+
 
 b = int(input())
 blist = [Pnum(x + 1) for x in range(b)]
@@ -44,10 +46,14 @@ answer = []
 
 for x in Blist:
     if x not in Alist:
-        answer.append(x)
+        answer.append(x)  # 두 리스트의 차에서 나오는 부산물을 다른 리스트에 삽입
 
-if Pnum(a):
+
+if Pnum(a) and a != 1:
     answer.append(a)  # 두 소수 입력시 앞의 번호가 씹히는 문제로인하여 추가. 그래도 실패
+    # 놀랍게도 이 구문으로 인해 오류가 계속 뜸. 왜냐? 1은 소수가 아닌데
+    # 위의 소수 함수에서 지 값을 리턴하기 때문. ㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+    # 정수론 어렵다
 
 if answer:
     print(f'{sum(answer)}\n{min(answer)}')

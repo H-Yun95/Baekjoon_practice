@@ -24,11 +24,9 @@ def Pnum(a):
         if a % x == 0:
             return 0
     return a
-# 리턴에서 소수가 아니라면 아예 아무것도 안나오게 하면 좋을텐데...
 
 
 a = int(input())
-
 alist = [Pnum(x + 1) for x in range(a)]
 Alist = []
 for x in alist:
@@ -47,6 +45,9 @@ answer = []
 for x in Blist:
     if x not in Alist:
         answer.append(x)
+
+if Pnum(a):
+    answer.append(a)  # 두 소수 입력시 앞의 번호가 씹히는 문제로인하여 추가. 그래도 실패
 
 if answer:
     print(f'{sum(answer)}\n{min(answer)}')

@@ -22,19 +22,30 @@ M이상 N이하의 자연수 중 소수인 것을 모두 찾아 첫째 줄에 �
 def Pnum(a):
     for x in range(2, a):
         if a % x == 0:
-            return None
+            return 0
     return a
 # 리턴에서 소수가 아니라면 아예 아무것도 안나오게 하면 좋을텐데...
 
 
 a = int(input())
+
 alist = [Pnum(x + 1) for x in range(a)]
+Alist = []
+for x in alist:
+    if x != 0:
+        Alist.append(x)
+
 b = int(input())
 blist = [Pnum(x + 1) for x in range(b)]
+Blist = []
+for x in blist:
+    if x != 0:
+        Blist.append(x)
+
 answer = []
 
-for x in blist:
-    if x not in alist:
+for x in Blist:
+    if x not in Alist:
         answer.append(x)
 
 if answer:

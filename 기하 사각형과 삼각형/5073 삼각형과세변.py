@@ -18,10 +18,10 @@ def c(T):
         return False
     elif len(set(T)) == 1:
         return 'Equilateral'
-    elif len(set(T)) == 2:
-        return 'Isosceles'
-    else:
-        T.remove(max(T))
+    elif len(set(T)) == 2 and 0 not in T:  # 처음 돌려보니 실패를 해서
+        return 'Isosceles'       # 0, 0, 1 꼴에서도 Isosceles이 출력되는걸 발견,
+    else:                        # 그래서 고쳤는데도 또 틀렸다. 왜지?
+        T.remove(max(T))         # 반례 찾아보니 2, 2, 8 같은경우 이등변이 나온다.
 
     if a >= sum(T):
         return 'Invalid'
@@ -29,12 +29,13 @@ def c(T):
         return 'Scalene'
 
 
-# while 1:
-#     T = list(map(int, input().split()))
-#     if c(T):
-#         print(c(T))
-#     else:
-#         break
+while 1:
+    T = list(map(int, input().split()))
+    b = c(T)
+    if b:
+        print(b)
+    else:
+        break
 
-A = [1, 2, 3]
-print(c(A))
+# A = [0, 0, 0]
+# print(c(A))

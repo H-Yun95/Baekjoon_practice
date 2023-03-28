@@ -27,15 +27,47 @@ f(n) = 7n + 7, g(n) = n, c = 8, n0 = 10이다. 모든 n ≥ 10에 대하여 7n +
 '''
 
 
-def n(a, b, c, d):
-    if a*d + b > c*d:
-        return 0
-    return 1
+def f(a, b, c):
+    return a*c+b
+# 단순히 수식만 세우니 감도 안잡힌다. 그래서 반례를 보고 그래프에서 아이디어를 착안,
+# 정확히 두 함수를 정림하는 것부터 시작함.
+
+
+def g(a, b):
+    return a*b
 
 
 a, b = map(int, input().split())
 c, d = int(input()), int(input())
+e = False
 
-print(n(a, b, c, d))
+while d != 100:                # 우선 n의 범위가 1~100까지라 d부터 100까지 반복
+    # 이러면 좌표평면 상에서 문제의 범위에서 두 함수의 대소를
+    if f(a, b, d) > g(c, d):   # 모두 구분할 수 있다고 생각. 근데 101로 했어야 했나?
+        print(0)               # 암튼 그래서 f(n)이 g(n)보다 더 큰 구간이 하나라도 있다면,
+        e = True               # 밑에서 1을 출력하기 위해 e를 True로 바꾸고
+        break                  # 0을 출력하고 끝
+    d += 1
 
-# 틀릴 것 같긴 했는데.... 어디를 고쳐야 할까
+if e:
+    pass
+else:
+    print(1)
+
+
+'''
+a,b,c,d=map(int,open(0).read().split())
+
+print(int(a*d+b<=c*d and a<=c))
+
+이래서 문제를 이해하고 식을 세우는게 ㅈㄴ 중요하구나...
+그러고 보니 이렇게 식을 세우면 True일 때 알아서 1이 나오는듯?
+
+a,b = map(int, input().split())
+c = int(input())
+n = int(input())
+
+r=1 if a*n+b<=c*n and c>=a else 0
+print(r)
+이런 표현식으로도 쓰이는 듯함.
+'''

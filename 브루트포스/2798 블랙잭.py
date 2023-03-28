@@ -34,7 +34,6 @@ a = list(map(int, input().split()))
 t = 0
 
 for x in range(n-2):
-    print(t)
     for y in range(1, n-1):
         for z in range(2, n):
             s = a[x] + a[y] + a[z]
@@ -42,3 +41,5 @@ for x in range(n-2):
                 t = s
 
 print(t)
+# ! 이렇게 단순 반복으로만 짜면 동일한 수 ex) x=y=1일때 등
+# 가 더해질 수 있어서 값이 이상하게 나옴. 그걸 해결해야 함.

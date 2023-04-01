@@ -18,6 +18,25 @@
 
 a, b = map(int, input().split())
 
-for x in range(a):
-    board = [map(str, input()) for _ in range(b)]
-    print(board)
+board = [list(input()) for _ in range(a)]
+t = 0
+
+for x in range(b-7):
+    for y in range(a-7):
+        for z in range(7):
+            if board[z][0] == board[z+1][0] == 'b':
+                board[z+1][0] = 'W'
+                t += 1
+            elif board[z][0] == board[z+1][0] == 'w':
+                board[z+1][0] = 'b'
+                t += 1
+            for i in range(7):
+                if board[z][i] == board[z][i+1] == 'b':
+                    board[z][i+1] = 'w'
+                    t += 1
+                elif board[z][i] == board[z][i+1] == 'w':
+                    board[z][i+1] = 'b'
+                    t += 1  # 작동을 안함
+
+# 일단 이전 원소와 같다면 다르게 칠하는 함수를 하나 만들어야 하고,
+# 또... 이걸 8X8사이즈로 잘라야 하니 붙여서 뭔갈 해야 할 듯

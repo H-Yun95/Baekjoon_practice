@@ -21,7 +21,7 @@
 
 def change(a):
     t = 0
-    for x in range(len(a)-1):
+    for x in range(7):
         if a[x] == a[x+1] == 'B':
             a[x+1] = 'W'
             t += 1
@@ -29,6 +29,7 @@ def change(a):
             a[x+1] = 'B'
             t += 1
     return t
+# 1줄 8칸짜리 단기 판별 로직
 
 
 a, b = map(int, input().split())
@@ -37,9 +38,11 @@ board = [list(input()) for _ in range(a)]
 t = 0
 
 for x in range(a):
-    t += change(board[x])
+    for y in range(b-7):
+        t += change(board[x])
 
 print(t)
 
 # 일단 이전 원소와 같다면 다르게 칠하는 함수를 하나 만들어야 하고,
 # 또... 이걸 8X8사이즈로 잘라야 하니 붙여서 뭔갈 해야 할 듯
+# 04.01 8*8 버전은 완료
